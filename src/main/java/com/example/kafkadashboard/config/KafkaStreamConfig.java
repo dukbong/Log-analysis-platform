@@ -19,6 +19,7 @@ import org.springframework.kafka.config.KafkaStreamsConfiguration;
 public class KafkaStreamConfig {
 
 	// Spring Kafka가 기본 설정을 찾을 수 있도록 빈 이름을 명시적으로 지정
+	// 아예 빈을 defaultKafkaStreamsConfig 이렇게 하면 name을 지정해줄 필요 없다.
     @Bean(name = KafkaStreamsDefaultConfiguration.DEFAULT_STREAMS_CONFIG_BEAN_NAME)
     public KafkaStreamsConfiguration kStreamsConfigs() {
         Map<String, Object> props = new HashMap<>();
@@ -33,12 +34,12 @@ public class KafkaStreamConfig {
     public KStream<String, String> kStream(StreamsBuilder streamsBuilder) {
         KStream<String, String> stream = streamsBuilder.stream("test-logs");
 
-//        Kafka Stream 테스트
+//        Kafka Stream 테스트 (대문자로 바꿔서 전달)
 //        stream = stream.mapValues((ValueMapper<? super String, ? extends String>) String::toUpperCase);
 //        stream.to("output-topic");
         
         // ERROR 로그는 output-topic으로 별도로 보낸다.
-        stream.filter((k, v) -> v.contains("ERROR")).to("output-topic");
+        stream.filter((k, v) -> v.contains("ERROR")).to("error-logs");
         
         return stream;
     }

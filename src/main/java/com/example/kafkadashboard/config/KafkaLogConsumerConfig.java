@@ -36,5 +36,22 @@ public class KafkaLogConsumerConfig {
 		factory.setConsumerFactory(logConsumerFactory());
 		return factory;
 	}
+	
+	@Bean
+	public ConsumerFactory<String, String> errorConsumerFactory() {
+		Map<String, Object> configProps = new HashMap<>();
+		configProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootStrapAddr);
+		configProps.put(ConsumerConfig.GROUP_ID_CONFIG, "error-group");
+		configProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+		configProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+		return new DefaultKafkaConsumerFactory<>(configProps);
+	}
+
+	@Bean
+	public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactoryB() {
+		ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
+		factory.setConsumerFactory(errorConsumerFactory());
+		return factory;
+	}
 
 }
