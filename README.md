@@ -119,7 +119,7 @@ volumes:
 ### 2. 스트림 처리
 - 사용 기술 : `KafkaStream`
   
-- **KafkaStream 사용이유**
+- **KafkaStream 사용 이유**
   - 별도의 클러스터나 외부 서비스 없이 Kafka 자체에서 스트리밍 처리를 수행할 수 있습니다.
   - Consumer가 소비할때 실시간으로 데이터를 처리 및 가공하여 동일 Topic 혹은 새로운 Topic에 전달 할 수 있습니다.
  
@@ -130,3 +130,9 @@ volumes:
 - **ElasticSearch 사용 이유**
   - 실시간을 데이터를 색인하고 검색할 수 있는 검색 엔진으로 데이터를 빠르게 쿼리하고 분석해야 하기 때문에 사용합니다.
   - ElasticSearch에서 logs로 구분해서 데이터 읽기 : `curl -XGET 'http://localhost:9200/logs/_search?q=*'`
+
+### 4. Grafana와 Elasticsearch 연동
+- 사용 기술 : `Grafna`
+
+- Grafana 사용 이유
+  - 사용이 간편하고 다양한 차트와 그래프를 통해 데이터를 시각화 할 수 있습니다.
