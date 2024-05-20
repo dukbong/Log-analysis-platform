@@ -27,7 +27,7 @@ dependencies {
 	implementation 'org.springframework.kafka:spring-kafka'
 	implementation "com.github.danielwegener:logback-kafka-appender:0.1.0" // log를 브로커에 전달
 	implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch' // log 파일 저장
-	// implementation 'org.apache.kafka:kafka-streams' // kafka stream
+	implementation 'org.apache.kafka:kafka-streams' // kafka stream
 	
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.mysql:mysql-connector-j'
