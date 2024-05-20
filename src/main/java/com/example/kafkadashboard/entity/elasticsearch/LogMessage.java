@@ -1,7 +1,12 @@
 package com.example.kafkadashboard.entity.elasticsearch;
 
+import java.time.LocalDateTime;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -9,13 +14,18 @@ import lombok.Getter;
 @Document(indexName = "logs")
 @Getter
 public class LogMessage {
-	@Id
-	private String id;
-	private String message;
-	
-	@Builder
-	public LogMessage(String id, String message) {
-		this.message = message;
-	}
-	
+    @Id
+    private String id;
+
+    @Field(type = FieldType.Text)
+    private String message;
+
+    @Field(name = "@timestamp", type = FieldType.Date, format = DateFormat.date_hour_minute_second_fraction)
+    private String timestamp;
+
+    @Builder
+    public LogMessage(String message, String timestamp) {
+        this.message = message;
+        this.timestamp = timestamp;
+    }
 }
