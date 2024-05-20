@@ -22,10 +22,10 @@ public class LogMessage {
 
 //    @Field(name = "@timestamp", type = FieldType.Date, format = DateFormat.date_hour_minute_second_fraction)
     @Field(name = "@timestamp", type = FieldType.Date, format = DateFormat.date_hour_minute)
-    private String timestamp;
+    private LocalDateTime timestamp;
 
     @Builder
-    public LogMessage(String message, String timestamp) {
+    public LogMessage(String message, LocalDateTime timestamp) {
         this.message = message;
         this.timestamp = timestamp;
     }

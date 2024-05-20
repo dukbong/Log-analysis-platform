@@ -18,7 +18,7 @@ public class LogService {
     public void saveLogMessage(String message) {
         LogMessage logMessage = LogMessage.builder()
                 .message(message)
-                .timestamp(formatTimestamp(LocalDateTime.now()))
+                .timestamp(LocalDateTime.now())
                 .build();
         logMessageRepository.save(logMessage);
     }
