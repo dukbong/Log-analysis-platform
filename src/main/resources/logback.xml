@@ -10,25 +10,23 @@
     <appender name="kafkaAppender" class="com.github.danielwegener.logback.kafka.KafkaAppender">
         <encoder class="com.github.danielwegener.logback.kafka.encoding.LayoutKafkaMessageEncoder">
             <layout class="ch.qos.logback.classic.PatternLayout">
-                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}[%M] - %msg%n</Pattern>
             </layout>
         </encoder>
         <topic>test-logs</topic>
-        <producerConfig>bootstrap.servers=localhost:9092</producerConfig>
+        <producerConfig>
+	        bootstrap.servers=localhost:9092
+        </producerConfig>
     </appender>
 
     <!-- logger -->
     <logger name="org.apache.kafka" level="ERROR"/>
-    <logger name="com.example.kafkadashboard" level="DEBUG">
+    <logger name="com.example.kafkadashboard" level="INFO">
         <appender-ref ref="kafkaAppender"/>
     </logger>
 
     <root level="DEBUG">
         <appender-ref ref="TERMINAL"/>
-    </root>
-
-    <root level="INFO">
-        <appender-ref ref="kafkaAppender" />
     </root>
 
 </configuration>

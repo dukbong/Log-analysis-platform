@@ -29,7 +29,7 @@ public class OrderController {
 	// 주문생성
 	@PostMapping
 	public ResponseEntity<String> createOrder(@RequestBody OrderDto orderDto) {
-		logger.info("주문을 생성합니다.");
+		logger.info("createOrder 접속");
 		orderServiceImpl.createOrder(orderDto);
 		return ResponseEntity.ok().body("주문이 생성되었습니다.");
 	}
