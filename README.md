@@ -111,7 +111,15 @@ volumes:
 ```
 </details>
 
-### 2. 로그 저장
+### 2. 스트림 처리
+- 사용 기술 : `KafkaStream`
+  
+- **KafkaStream 사용이유**
+  - 별도의 클러스터나 외부 서비스 없이 Kafka 자체에서 스트리밍 처리를 수행할 수 있습니다.
+  - Consumer가 소비할때 실시간으로 데이터를 처리 및 가공하여 동일 Topic 혹은 새로운 Topic에 전달 할 수 있습니다.
+ 
+    
+### 3. 로그 저장
 - 사용 기술 : `ElasticSearch`
 
 - **ElasticSearch 사용 이유**
