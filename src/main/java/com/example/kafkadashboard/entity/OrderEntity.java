@@ -2,6 +2,8 @@ package com.example.kafkadashboard.entity;
 
 import java.time.LocalDateTime;
 
+import com.example.kafkadashboard.dto.OrderDto;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -32,6 +34,14 @@ public class OrderEntity {
 		this.productName = productName;
 		this.orderTime = orderTime;
 		this.orderStatus = orderStatus;
+	}
+
+	public void cancelOrder() {
+		this.orderStatus = false;
+	}
+
+	public OrderDto convertDTO() {
+		return OrderDto.builder().id(this.id).productName(this.productName).orderTime(this.orderTime).orderStatus(this.orderStatus).build();
 	}
 	
 }

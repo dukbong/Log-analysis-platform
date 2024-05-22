@@ -20,7 +20,7 @@ public class LogMessage {
     @Field(type = FieldType.Text)
     private String message;
 
-//    @Field(name = "@timestamp", type = FieldType.Date, format = DateFormat.date_hour_minute_second_fraction)
+    // Elasticsearch에서 시간 별 집계를 하기 위해서 사용됩니다.
     @Field(name = "@timestamp", type = FieldType.Date, format = DateFormat.date_hour_minute)
     private LocalDateTime timestamp;
 

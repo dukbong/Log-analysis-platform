@@ -1,7 +1,6 @@
 package com.example.kafkadashboard.serviceImpl;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import org.springframework.stereotype.Service;
 
@@ -17,14 +16,8 @@ public class ErrorLogService {
 	private final ErrorLogMessageRepository errorLogMessageRepository;
 	
 	public void saveErrorLogMessage(String message) {
-		ErrorLogMessage logMessage = ErrorLogMessage.builder().message(message).timestamp(formatTimestamp(LocalDateTime.now())).build();
+		ErrorLogMessage logMessage = ErrorLogMessage.builder().message(message).timestamp(LocalDateTime.now()).build();
 		errorLogMessageRepository.save(logMessage);
 	}
-	
-    // Grafana에서 집계합수를 쓰기 위해서 분까지만 작성
-    private String formatTimestamp(LocalDateTime dateTime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
-        return dateTime.format(formatter);
-    }
 	
 }

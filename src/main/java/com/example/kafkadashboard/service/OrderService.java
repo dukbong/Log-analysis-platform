@@ -2,7 +2,8 @@ package com.example.kafkadashboard.service;
 
 import java.util.List;
 
-import org.springframework.data.domain.jaxb.SpringDataJaxb.OrderDto;
+import com.example.kafkadashboard.dto.OrderDto;
+
 
 public interface OrderService {
 
