@@ -12,13 +12,14 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class LogService {
+	
     private final LogMessageRepository logMessageRepository;
 
     public void saveLogMessage(String message) {
         LogMessage logMessage = LogMessage.builder()
-                .message(message)
-                .timestamp(LocalDateTime.now())
-                .build();
+						                  .message(message)
+						                  .timestamp(LocalDateTime.now())
+						                  .build();
         logMessageRepository.save(logMessage);
     }
 
