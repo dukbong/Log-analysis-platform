@@ -31,5 +31,12 @@ public class OrderDto {
 							  .orderStatus(this.orderStatus)
 							  .build();
 	}
+
+	@Override
+	public String toString() {
+		return String.format("id = %s, productName = %s, orderTime = %s, orderStatus = %s", id, productName, orderTime, orderStatus);
+	}
+	
+	
 	
 }

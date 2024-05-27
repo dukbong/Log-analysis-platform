@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+
+	<property name="projectName" value="kafka-dashboard" />
+	
     <appender name="TERMINAL" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
-            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}[%M] - %msg%n</Pattern>
         </layout>
     </appender>
 
-    <!-- Layout 1  :  kafkaAppender -->
+    <!-- Layout for Kafka -->
     <appender name="kafkaAppender" class="com.github.danielwegener.logback.kafka.KafkaAppender">
         <encoder class="com.github.danielwegener.logback.kafka.encoding.LayoutKafkaMessageEncoder">
             <layout class="ch.qos.logback.classic.PatternLayout">
-                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}[%M] - %msg%n</Pattern>
+                <Pattern>{"project":"${projectName}", "timestamp":"%d{yyyy-MM-dd HH:mm:ss.SSS}", "thread":"[%thread]", "level":"%-5level", "logger":"%logger{36}[%M]", "message":"%msg"}</Pattern>
             </layout>
         </encoder>
         <topic>test-logs</topic>
@@ -19,7 +22,7 @@
         </producerConfig>
     </appender>
 
-    <!-- logger -->
+    <!-- logger configuration -->
     <logger name="org.apache.kafka" level="ERROR"/>
     <logger name="com.example.kafkadashboard" level="INFO">
         <appender-ref ref="kafkaAppender"/>
@@ -28,5 +31,4 @@
     <root level="DEBUG">
         <appender-ref ref="TERMINAL"/>
     </root>
-
 </configuration>
